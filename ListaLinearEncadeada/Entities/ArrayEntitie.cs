@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace ListaLinearEncadeada.Entities
 {
-    public class ArrayEntitie
+    public partial class ArrayEntitie
     {
         public int[] Array { get; private set; }
         private readonly int Inicio = 0;
@@ -14,17 +12,6 @@ namespace ListaLinearEncadeada.Entities
         {
             Final = lenght;
             Array = new int[lenght];
-        }
-
-        public int[] AdicionarElementoArray()
-        {
-            for(int i = 0; i < Final; i++)
-            {
-                Console.Write($"Digite o {Inicio+1}° elemento da array: ");
-                Array[i] = int.Parse(Console.ReadLine());
-            }
-
-            return Array;
         }
 
         public override string ToString()
