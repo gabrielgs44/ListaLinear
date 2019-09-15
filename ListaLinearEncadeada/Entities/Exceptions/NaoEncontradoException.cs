@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ListaLinearEncadeada.Entities.Exceptions
+namespace ListaLinear.Entities.Exceptions
 {
     public class NaoEncontradoException: Exception
     {

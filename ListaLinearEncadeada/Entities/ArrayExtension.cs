@@ -1,24 +1,32 @@
-﻿using ListaLinearEncadeada.Entities.Exceptions;
+﻿using ListaLinear.Entities.Exceptions;
 using System;
 
-namespace ListaLinearEncadeada.Entities
+namespace ListaLinear.Entities
 {
     public partial class ArrayEntitie
     {
         public int[] AdicionarElementoArray()
         {
-            for (int i = Inicio; i < Final; i++)
+            if (!(Tamanho == Final))
             {
-                Console.Write($"Digite o {Inicio + 1}° elemento da array: ");
-                Array[i] = int.Parse(Console.ReadLine());
-            }
+                for (int i = Final; i < Tamanho; i++)
+                {
+                    Console.Write($"Digite o {i + 1}° elemento da array: ");
+                    Array[i] = int.Parse(Console.ReadLine());
+                    Final++;
+                }
 
-            return Array;
+                return Array;
+            }
+            else
+            {
+                throw new SemEspacoException("Sem espaço para adicionar elementos!");
+            }
         }
 
         public int ProcurarElementoPeloIndice(int indice)
         {
-            for (int i = Inicio; i < Final; i++)
+            for (int i = 0; i < Final; i++)
             {
                 if (i == indice)
                     return Array[i];
@@ -29,26 +37,13 @@ namespace ListaLinearEncadeada.Entities
 
         public int ProcurarIndicePeloElemento(int elemento)
         {
-            for (int i = Inicio; i < Final; i++)
+            for (int i = 0; i < Final; i++)
             {
                 if (Array[i].Equals(elemento))
                     return i;
             }
 
             throw new NaoEncontradoException("O Elemento não foi encontrado.");
-        }
-
-        public void RemoverElementoPeloIndice(int indice)
-        {
-            if (indice > Inicio && indice < Final)
-            {
-                Array[indice] = Array[Final - 1];
-                Final--;
-            }
-            else
-            {
-                throw new NaoEncontradoException("Indice informado não existe!");
-            }
         }
 
         public void RemoverElementoInformado(int elemento)

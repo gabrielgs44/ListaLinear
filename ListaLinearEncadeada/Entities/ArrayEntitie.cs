@@ -1,17 +1,18 @@
 ﻿using System.Text;
 
-namespace ListaLinearEncadeada.Entities
+namespace ListaLinear.Entities
 {
     public partial class ArrayEntitie
     {
         public int[] Array { get; private set; }
-        private readonly int Inicio = 0;
+        private readonly int Tamanho;
         private int Final;
 
         public ArrayEntitie(int lenght)
         {
-            Final = lenght;
+            Final = 0;
             Array = new int[lenght];
+            Tamanho = lenght;
         }
 
         public override string ToString()
