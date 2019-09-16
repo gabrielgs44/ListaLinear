@@ -5,7 +5,7 @@ namespace ListaLinear.Entities
 {
     public partial class ArrayEntitie
     {
-        public int[] AdicionarElementoArray()
+        public void AdicionarElementoArray()
         {
             if (!(Tamanho == Final))
             {
@@ -15,8 +15,6 @@ namespace ListaLinear.Entities
                     Array[i] = int.Parse(Console.ReadLine());
                     Final++;
                 }
-
-                return Array;
             }
             else
             {
@@ -50,6 +48,29 @@ namespace ListaLinear.Entities
         {
             Array[ProcurarIndicePeloElemento(elemento)] = Array[Final - 1];
             Final--;
+        }
+
+        public void Orderar()
+        {
+            int aux = 0;
+
+            for (int i = 0; i < Final; i++)
+            {
+                for (int j = 0; j < Final; j++)
+                {
+                    if (j < (Final - 1))
+                    {
+                        if (Array[j] > Array[j + 1])
+                        {
+
+                            aux = Array[j];
+                            Array[j] = Array[j + 1];
+                            Array[j + 1] = aux;
+
+                        }
+                    }
+                }
+            }
         }
     }
 }

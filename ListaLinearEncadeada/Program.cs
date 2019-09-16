@@ -24,12 +24,13 @@ namespace ListaLinear
                 Console.WriteLine("3 - Encontrar indice pelo Elemento");
                 Console.WriteLine("4 - Remover elemento informado");
                 Console.WriteLine("5 - Exibir Lista");
+                Console.WriteLine("6 - Ordenar");
                 Console.WriteLine("8 - Sair");
                 Console.Write("Escolha o serviço: ");
                 Console.WriteLine();
                 Console.WriteLine();
-                Console.Clear();
                 int opcao = int.Parse(Console.ReadLine());
+                Console.Clear();
                 switch (opcao)
                 {
                     case 1:
@@ -51,6 +52,13 @@ namespace ListaLinear
                     case 5:
                         Console.WriteLine(array);
                         break;
+                    case 6:
+                        array.Orderar();
+                        Console.WriteLine(array);
+                        break;
+                    case 7:
+                        array.BuscaBinaria();
+                        Console.WriteLine();
                     default:
                         Console.Clear();
                         Console.WriteLine("Opcao invalida, tente novamente!");
