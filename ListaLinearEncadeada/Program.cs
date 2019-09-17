@@ -27,6 +27,8 @@ namespace ListaLinear
                 Console.WriteLine("6 - Ordenar");
                 Console.WriteLine("7 - Busca Binaria");
                 Console.WriteLine("8 - Sair");
+                Console.WriteLine("9 - push");
+                Console.WriteLine("10 - Pop");
                 Console.Write("Escolha o serviço: ");
                 Console.WriteLine();
                 Console.WriteLine();
@@ -62,13 +64,24 @@ namespace ListaLinear
                         var posicao = array.BuscaBinaria(int.Parse(Console.ReadLine()));
                         Console.WriteLine(posicao);
                         break;
+                    case 8:
+                        sair = true;
+                        break;
+                    case 9:
+                        Console.WriteLine("Digite o elemento: ");
+                        Console.WriteLine(array.Push(int.Parse(Console.ReadLine())));
+                        Console.ReadLine();
+                        break;
+                    case 10:
+                        Console.WriteLine(array.Pop());
+                        Console.ReadLine();
+                        break;
                     default:
                         Console.Clear();
                         Console.WriteLine("Opcao invalida, tente novamente!");
                         break;
 
                 }
-                sair = Opcao.Continue();
                 Console.Clear();
             }
         }

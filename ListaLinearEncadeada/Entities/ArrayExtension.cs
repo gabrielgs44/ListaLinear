@@ -102,5 +102,25 @@ namespace ListaLinear.Entities
 
             throw new NaoEncontradoException("Elemento informado não foi encontrado.");
         }
+
+        public int Push(int elemento)
+        {
+            if (Final == Tamanho)
+                throw new SemEspacoException("Não é possível adicionar mais elementos.");
+            else
+                Array[Final - 1] = elemento;
+
+            return Array[Final - 1];
+        }
+
+        public int Pop()
+        {
+            if (Final == 0)
+                throw new NaoEncontradoException("Não possui elemento para ser removido");
+            else
+                Final--;
+
+            return Array[Final - 1];
+        }
     }
 }
