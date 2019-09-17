@@ -72,5 +72,35 @@ namespace ListaLinear.Entities
                 }
             }
         }
+
+        public int BuscaBinaria(int elemento)
+        {
+            Orderar();
+
+            int meio = Array[0 + (Final - 1) / 2];
+
+            if (elemento == meio)
+            {
+                return 0 + (Final - 1) / 2;
+            }
+            else if (elemento < meio)
+            {
+                for (int i = 0; i < meio; i++)
+                {
+                    if (Array[i] == elemento)
+                        return i;
+                }
+            }
+            else
+            {
+                for (int i = meio; i < Final; i++)
+                {
+                    if (Array[i] == elemento)
+                        return i;
+                }
+            }
+
+            throw new NaoEncontradoException("Elemento informado não foi encontrado.");
+        }
     }
 }

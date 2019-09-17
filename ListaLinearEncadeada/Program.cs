@@ -25,6 +25,7 @@ namespace ListaLinear
                 Console.WriteLine("4 - Remover elemento informado");
                 Console.WriteLine("5 - Exibir Lista");
                 Console.WriteLine("6 - Ordenar");
+                Console.WriteLine("7 - Busca Binaria");
                 Console.WriteLine("8 - Sair");
                 Console.Write("Escolha o serviço: ");
                 Console.WriteLine();
@@ -57,13 +58,14 @@ namespace ListaLinear
                         Console.WriteLine(array);
                         break;
                     case 7:
-                        array.BuscaBinaria();
-                        Console.WriteLine();
+                        Console.Write("Digite o Elemento: ");
+                        var posicao = array.BuscaBinaria(int.Parse(Console.ReadLine()));
+                        Console.WriteLine(posicao);
+                        break;
                     default:
                         Console.Clear();
                         Console.WriteLine("Opcao invalida, tente novamente!");
                         break;
-
 
                 }
                 sair = Opcao.Continue();
