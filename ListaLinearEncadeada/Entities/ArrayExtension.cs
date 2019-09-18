@@ -7,24 +7,35 @@ namespace ListaLinear.Entities
     {
         public void AdicionarElementoArray()
         {
-            if (!(Tamanho == Final))
+            if (EstaVazio())
+            {
+                for (int i = 0; i < Tamanho; i++)
+                {
+                    Console.Write($"Digite o {i + 1}° elemento da array: ");
+                    Array[i] = int.Parse(Console.ReadLine());
+                    Final++;
+                    EstaOrdenado = false;
+                }
+            }
+            else if (EstaCheio())
+            {
+                throw new SemEspacoException("Sem espaço para adicionar elementos!");
+            }
+            else
             {
                 for (int i = Final; i < Tamanho; i++)
                 {
                     Console.Write($"Digite o {i + 1}° elemento da array: ");
                     Array[i] = int.Parse(Console.ReadLine());
                     Final++;
+                    EstaOrdenado = false;
                 }
-            }
-            else
-            {
-                throw new SemEspacoException("Sem espaço para adicionar elementos!");
             }
         }
 
         public int ProcurarElementoPeloIndice(int indice)
         {
-            for (int i = 0; i < Final; i++)
+            for (int i = 0; i < Final + 1; i++)
             {
                 if (i == indice)
                     return Array[i];
@@ -35,7 +46,7 @@ namespace ListaLinear.Entities
 
         public int ProcurarIndicePeloElemento(int elemento)
         {
-            for (int i = 0; i < Final; i++)
+            for (int i = 0; i < Final + 1; i++)
             {
                 if (Array[i].Equals(elemento))
                     return i;
@@ -46,19 +57,20 @@ namespace ListaLinear.Entities
 
         public void RemoverElementoInformado(int elemento)
         {
-            Array[ProcurarIndicePeloElemento(elemento)] = Array[Final - 1];
+            Array[ProcurarIndicePeloElemento(elemento)] = Array[Final];
             Final--;
+            EstaOrdenado = false;
         }
 
         public void Orderar()
         {
             int aux = 0;
 
-            for (int i = 0; i < Final; i++)
+            for (int i = 0; i < Final + 1; i++)
             {
-                for (int j = 0; j < Final; j++)
+                for (int j = 0; j < Final + 1; j++)
                 {
-                    if (j < (Final - 1))
+                    if (j < Final)
                     {
                         if (Array[j] > Array[j + 1])
                         {
@@ -71,17 +83,20 @@ namespace ListaLinear.Entities
                     }
                 }
             }
+
+            EstaOrdenado = true;
         }
 
         public int BuscaBinaria(int elemento)
         {
-            Orderar();
+            if (!EstaOrdenado)
+                throw new RegraException("É necessário está ornado para realizar a busca binária!");
 
-            int meio = Array[0 + (Final - 1) / 2];
+            int meio = Array[0 + (Final) / 2];
 
             if (elemento == meio)
             {
-                return 0 + (Final - 1) / 2;
+                return 0 + (Final) / 2;
             }
             else if (elemento < meio)
             {
@@ -93,7 +108,7 @@ namespace ListaLinear.Entities
             }
             else
             {
-                for (int i = meio; i < Final; i++)
+                for (int i = meio; i < Final + 1; i++)
                 {
                     if (Array[i] == elemento)
                         return i;
@@ -103,24 +118,48 @@ namespace ListaLinear.Entities
             throw new NaoEncontradoException("Elemento informado não foi encontrado.");
         }
 
-        public int Push(int elemento)
+        public void Push(int elemento)
         {
-            if (Final == Tamanho)
+            if (EstaCheio())
                 throw new SemEspacoException("Não é possível adicionar mais elementos.");
             else
-                Array[Final - 1] = elemento;
+                Array[Final] = elemento;
 
-            return Array[Final - 1];
+            EstaOrdenado = false;
+
         }
 
         public int Pop()
         {
-            if (Final == 0)
+            if (EstaVazio())
                 throw new NaoEncontradoException("Não possui elemento para ser removido");
             else
+            {
                 Final--;
+                return Array[Final + 1];
+            }
+        }
 
-            return Array[Final - 1];
+        public int Top()
+        {
+            if (EstaVazio())
+            {
+                throw new NaoEncontradoException("A Pilha está vázia");
+            }
+            else
+            {
+                return Array[Final];
+            }
+        }
+
+        private bool EstaVazio()
+        {
+            return Final < 0;
+        }
+
+        private bool EstaCheio()
+        {
+            return Final == (Tamanho - 1);
         }
     }
 }

@@ -7,10 +7,11 @@ namespace ListaLinear.Entities
         public int[] Array { get; private set; }
         private readonly int Tamanho;
         private int Final;
+        private bool EstaOrdenado = false;
 
         public ArrayEntitie(int lenght)
         {
-            Final = 0;
+            Final = -1;
             Array = new int[lenght];
             Tamanho = lenght;
         }
@@ -19,7 +20,7 @@ namespace ListaLinear.Entities
         {
             StringBuilder sb = new StringBuilder();
 
-            for (int i = 0; i < Final; i++)
+            for (int i = 0; i < Final + 1; i++)
             {
                 sb.AppendLine(Array[i].ToString());
             }
